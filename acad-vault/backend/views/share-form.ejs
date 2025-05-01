@@ -1,0 +1,37 @@
+<!-- views/authorize.ejs -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Authorize Access</title>
+    </head>
+    <body>
+        <h2>Authorize Data Access</h2>
+        <form method="POST" action="/api/share">
+            <input type="hidden" name="org_id" value="<%= org_id %>" />
+            <input
+                type="hidden"
+                name="redirect_uri"
+                value="<%= redirect_uri %>"
+            />
+            <input
+                type="hidden"
+                name="frontend_redirect_uri"
+                value="<%= frontend_redirect_uri %>"
+            />
+            <input type="hidden" name="access_key" value="<%= access_key %>" />
+
+            <label>AvId</label><br />
+            <input type="text" name="avid" required /><br />
+
+            <label>Password:</label><br />
+            <input type="password" name="password" required /><br />
+
+            <label>
+                <input type="checkbox" name="consent" value="yes" required />
+                I consent to share my data with this organization </label
+            ><br /><br />
+
+            <button type="submit">Authorize</button>
+        </form>
+    </body>
+</html>

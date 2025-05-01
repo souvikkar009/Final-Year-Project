@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Authorized</title>
+    </head>
+    <body>
+        <p>Authorizing... Please wait.</p>
+
+        <script>
+            const payload = {
+                status: "success",
+            };
+
+            const thirdPartyOrigin = new URL("<%= frontendRedirect %>").origin;
+
+            // Send message to parent window
+            if (window.opener) {
+                window.opener.postMessage(payload, thirdPartyOrigin);
+            }
+
+            // Optional: redirect the popup instead of closing
+            setTimeout(() => {
+                window.location.href = "<%= frontendRedirect %>";
+            }, 500);
+        </script>
+    </body>
+</html>
