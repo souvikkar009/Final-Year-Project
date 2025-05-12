@@ -40,7 +40,7 @@ router.post("/organization/login", loginOrganization);
 router.get(
     "/who",
     validateToken,
-    authorizeRoles("student", "institute", "organization"),
+    authorizeRoles("student", "institute", "organization", "unauthorized"),
     loggedInUserInfo
 );
 

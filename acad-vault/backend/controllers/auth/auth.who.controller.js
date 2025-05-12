@@ -6,6 +6,7 @@ const asyncHandler = require("express-async-handler");
 @access Private
 */
 const loggedInUserInfo = asyncHandler(async (req, res) => {
+    console.log(req.authData);
     res.json(req.authData);
 });
 

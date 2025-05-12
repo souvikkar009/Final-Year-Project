@@ -1,12 +1,9 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import Organization from "../pages/Organization";
+import { Outlet} from "react-router-dom";
 
 const OrganizationLayout = () => {
-  const pathname = useLocation().pathname.substring(1);
   return (
     <div>
-      {pathname === "organization" && <Organization />}
       <Outlet />
     </div>
   );

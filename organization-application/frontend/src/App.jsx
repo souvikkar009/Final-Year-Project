@@ -4,6 +4,9 @@ import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3030";
 axios.defaults.withCredentials = true;
 
+
+// s ky - 62b508519bc93bd6
+
 const secret_key = "79fe198af234bbf77a2c9996453f3621";
 const org_id = "3694216ad731";
 const access_key = "8cbd2c9678d6587b";

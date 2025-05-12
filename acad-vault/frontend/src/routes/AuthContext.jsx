@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { useEffect, useState, createContext } from "react";
 
@@ -16,9 +16,11 @@ export const AuthProvider = ({ children }) => {
         const fetchUserAuthData = async () => {
             try {
                 const authDataRes = await axios.get(`/api/auth/who`);
-                if (authDataRes.ok) {
-                    setUserId(authDataRes.data.authData.userId);
-                    setUserRole(authDataRes.data.authData.userId);
+                // console.log(authDataRes);
+
+                if (authDataRes.statusText == "OK") {
+                    setUserId(authDataRes.data.userId);
+                    setUserRole(authDataRes.data.userRole);
                 } else {
                     setUserId(null);
                     setUserRole(null);
@@ -41,3 +43,5 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     );
 };
+
+export const useAuth = () => useContext(AuthContext);
