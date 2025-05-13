@@ -2,7 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import Unauthorized from "../components/Unauthorized";
 import RootLayout from "../layouts/RootLayout";
-import Home from "../components/Home";
+import Home from "../pages/Home";
 import PublicRoutes from "../routes/PublicRoutes";
 import StudentRegister from "../components/StudentRegister";
 import StudentLogin from "../components/StudentLogin";

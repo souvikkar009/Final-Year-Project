@@ -10,20 +10,19 @@ const { generateDataAccessKey } = require("../utils/generateOrganizationKeys");
 const createAccessKey = expressAsyncHandler(async (req, res) => {
     const { accessing_data } = req.body;
 
-    const { email } = req.authData;
+    const { userId } = req.authData;
+    
+    
     const generated_access_key = generateDataAccessKey();
 
-    const organization = await Organization.findOneAndUpdate(
-        { email },
+    const organization = await Organization.findByIdAndUpdate(
+        userId,
         {
             $set: {
                 [`access_keys.${generated_access_key}`]: accessing_data,
             },
         }
     );
-    console.log(organization);
-
-    console.log(generated_access_key);
 
     res.json({
         message: "Data Access Key Generated",
