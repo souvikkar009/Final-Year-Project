@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const Carousel = ({ images }) => {
+const Carousel = ({ slides }) => {
     return (
         <Swiper
             modules={[Navigation, Autoplay, Pagination]}
@@ -19,13 +19,12 @@ const Carousel = ({ images }) => {
             loop
             className="max-w-xl mx-auto"
         >
-            {images.map((src, index) => (
+            {slides.map((slide, index) => (
                 <SwiperSlide key={index}>
-                    <img
-                        src={src}
-                        alt={`Slide ${index + 1}`}
-                        className="w-full h-auto"
-                    />
+                    <div>
+                        <div>{slide.title}</div>
+                        <div>{slide.desc}</div>
+                    </div>
                 </SwiperSlide>
             ))}
         </Swiper>

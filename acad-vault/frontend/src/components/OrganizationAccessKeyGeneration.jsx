@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { studentData, studentGeneralInformation } from "../data/dataMapping";
+import { studentGeneralInformationMap } from "../data/dataMapping";
 import axios from "axios";
 import { IoCloseSharp } from "react-icons/io5";
 import { FaRegCopy } from "react-icons/fa";
@@ -17,13 +17,13 @@ const OrganizationAccessKeyGeneration = () => {
 
     const [copied, setCopied] = useState(false);
     const handleGeneralInfoSelect = (e) => {
-        const selectedValue = studentGeneralInformation[e.target.value];
+        const selectedValue = studentGeneralInformationMap[e.target.value];
 
         if (selectedValue && !generalInfoDataPoints.includes(selectedValue)) {
             setGeneralInfoDataPoints([...generalInfoDataPoints, selectedValue]);
             setGeneralInfoDataPointValues([
                 ...generalInfoDataPointValues,
-                studentData[e.target.value],
+                e.target.value,
             ]);
         }
         e.target.value = "";
@@ -34,16 +34,16 @@ const OrganizationAccessKeyGeneration = () => {
         console.log(generalInfoDataPoints);
 
         await axios
-          .post(`/api/organization/create-access-key`, {
-            accessing_data: generalInfoDataPointValues,
-          })
-          .then((response) => {
-            console.log(response.data);
-            setAccessKeyRes(response.data);
-          })
-          .catch((error) => {
-            alert(error.response.data.message);
-          });
+            .post(`/api/organization/create-access-key`, {
+                accessing_data: generalInfoDataPointValues,
+            })
+            .then((response) => {
+                console.log(response.data);
+                setAccessKeyRes(response.data);
+            })
+            .catch((error) => {
+                alert(error.response.data.message);
+            });
     };
     return (
         <div className="flex items-center justify-center bg-white mt-16">
@@ -67,18 +67,18 @@ const OrganizationAccessKeyGeneration = () => {
                             <option value="">--Select Data Points--</option>
                             {(() => {
                                 const items = [];
-                                for (const key in studentGeneralInformation) {
+                                for (const key in studentGeneralInformationMap) {
                                     if (
                                         generalInfoDataPoints.length > 0 &&
                                         generalInfoDataPoints.includes(
-                                            studentGeneralInformation[key]
+                                            studentGeneralInformationMap[key]
                                         )
                                     ) {
                                         continue;
                                     }
                                     items.push(
                                         <option value={key} key={key}>
-                                            {studentGeneralInformation[key]}
+                                            {studentGeneralInformationMap[key]}
                                         </option>
                                     );
                                 }

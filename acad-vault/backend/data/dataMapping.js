@@ -1,4 +1,4 @@
-const studentDate = {
+const studentDateMap = {
     // general information
     first_name: "full_name.first_name",
     last_name: "full_name.last_name",
@@ -41,4 +41,4 @@ const studentDate = {
     higher_studies_diploma: "higher_studies.diploma",
 };
 
-module.exports = studentDate;
+module.exports = studentDateMap;
