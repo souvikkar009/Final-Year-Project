@@ -26,7 +26,7 @@ const slideData = [
 
 const Home = () => {
     return (
-        <div className="mt-8">
+        <div>
             <Carousel slides={slideData} />
         </div>
     );

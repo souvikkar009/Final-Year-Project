@@ -17,10 +17,14 @@ const Carousel = ({ slides }) => {
             pagination={{ clickable: true }}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             loop
-            className="max-w-xl mx-auto"
+            className="max-w-screen text-2xl h-[400px]"
+            style={{
+                "--swiper-navigation-color": "#fff",
+                // "--swiper-navigation-size": "2xl",
+            }}
         >
             {slides.map((slide, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide key={index} className="text-lg bg-slate-800 text-amber-50">
                     <div>
                         <div>{slide.title}</div>
                         <div>{slide.desc}</div>

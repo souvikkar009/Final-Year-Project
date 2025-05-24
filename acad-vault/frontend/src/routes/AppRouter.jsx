@@ -18,6 +18,8 @@ import InstituteLayout from "../layouts/InstituteLayout";
 
 import OrganizationAccessKeyGeneration from "../components/OrganizationAccessKeyGeneration";
 import Organization from "../pages/Organization";
+import Auth from "../pages/Auth";
+import AuthLayout from "../layouts/AuthLayout";
 
 const AppRouter = createBrowserRouter([
     // Home Page
@@ -33,21 +35,49 @@ const AppRouter = createBrowserRouter([
     {
         element: <PublicRoutes />,
         children: [
-            { path: "/auth/student/login", element: <StudentLogin /> },
-            { path: "/auth/student/register", element: <StudentRegister /> },
             {
-                path: "/auth/organization/login",
-                element: <OrganizationLogin />,
+                path: "/auth",
+                element: <AuthLayout />,
+                children: [
+                    { index: true, element: <Auth /> },
+                    { path: "/auth/student/login", element: <StudentLogin /> },
+                    {
+                        path: "/auth/student/register",
+                        element: <StudentRegister />,
+                    },
+                    {
+                        path: "/auth/organization/login",
+                        element: <OrganizationLogin />,
+                    },
+                    {
+                        path: "/auth/organization/register",
+                        element: <OrganizationRegister />,
+                    },
+                    {
+                        path: "/auth/institute/login",
+                        element: <InstituteLogin />,
+                    },
+                    {
+                        path: "/auth/institute/register",
+                        element: <InstituteRegister />,
+                    },
+                ],
             },
-            {
-                path: "/auth/organization/register",
-                element: <OrganizationRegister />,
-            },
-            { path: "/auth/institute/login", element: <InstituteLogin /> },
-            {
-                path: "/auth/institute/register",
-                element: <InstituteRegister />,
-            },
+            // { path: "/auth/student/login", element: <StudentLogin /> },
+            // { path: "/auth/student/register", element: <StudentRegister /> },
+            // {
+            //     path: "/auth/organization/login",
+            //     element: <OrganizationLogin />,
+            // },
+            // {
+            //     path: "/auth/organization/register",
+            //     element: <OrganizationRegister />,
+            // },
+            // { path: "/auth/institute/login", element: <InstituteLogin /> },
+            // {
+            //     path: "/auth/institute/register",
+            //     element: <InstituteRegister />,
+            // },
         ],
     },
 

@@ -1,12 +1,51 @@
 @import "tailwindcss";
 
-@layer components {
-  .form-border {
-    @apply border border-gray-400 focus:outline-2 focus:border-blue-700 outline-none;
-  }
+@layer base {
+    body {
+        @apply bg-slate-900;
+    }
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+@layer components {
+    .main-gradient {
+        @apply bg-gradient-to-r from-teal-600 to-violet-600;
+    }
+    .text-main-gradient {
+        @apply bg-gradient-to-r from-emerald-600 to-purple-600 bg-clip-text text-transparent;
+    }
+    .auth-entity {
+        @apply hover:bg-slate-500 px-8 py-2 rounded cursor-pointer;
+    }
+    .auth-type-container {
+        @apply absolute left-1/2 -translate-x-1/2 w-32 border rounded p-2 bg-slate-900;
+    }
+    .auth-type {
+        @apply cursor-pointer py-1 text-center hover:bg-slate-500 rounded;
+    }
+    .form-border {
+        @apply border border-slate-400;
+    }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    position: absolute;
+}
+
+.swiper-button-next {
+    cursor: pointer;
+    top: 95%;
+    transform: translateY(-50%);
+    right: 2%;
+}
+
+.swiper-button-prev {
+    cursor: pointer;
+    top: 95%;
+    transform: translateY(-50%);
+    left: 90%;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
