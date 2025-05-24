@@ -87,7 +87,7 @@ const AppRouter = createBrowserRouter([
         element: <ProtectedRoute allowedRoles={["student"]} />,
         children: [
             {
-                path: "/student*",
+                path: "/student",
                 element: <StudentLayout />,
             },
         ],
@@ -96,7 +96,7 @@ const AppRouter = createBrowserRouter([
         element: <ProtectedRoute allowedRoles={["institute"]} />,
         children: [
             {
-                path: "/institute*",
+                path: "/institute",
                 element: <InstituteLayout />,
             },
         ],
