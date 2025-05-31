@@ -13,6 +13,7 @@ const student_schema = mongoose.Schema(
         dob: Date,
         state: String,
         district: String,
+        gender: { type: String, enum: ["male", "female"], default: null },
         pin_code: Number,
         address: String,
         mobile_no: String,

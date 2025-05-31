@@ -11,6 +11,7 @@ const StudentRegister = () => {
         first_name: "",
         last_name: "",
         dob: "",
+        gender: "",
         state: "",
         district: "",
         pin_code: "",
@@ -34,6 +35,7 @@ const StudentRegister = () => {
                 last_name: formData.last_name,
             },
             dob: formData.dob,
+            gender: formData.gender,
             state: formData.state,
             district: formData.district,
             pin_code: formData.pin_code,
@@ -47,13 +49,13 @@ const StudentRegister = () => {
         await axios
             .post(`/api/auth/student/register`, registerData)
             .then((response) => {
-                // setFormData(initialState);
+                setFormData(initialState);
                 alert(response.data.message);
-                // window.location.reload();
+                window.location.reload();
             })
             .catch((error) => {
                 alert(error.response.data.message);
-                // setFormData(initialState);
+                setFormData(initialState);
             });
     };
 
@@ -87,14 +89,28 @@ const StudentRegister = () => {
                             required
                         />
                     </div>
-                    <input
-                        type="date"
-                        name="dob"
-                        className="w-full p-2 rounded form-border"
-                        onChange={handleChange}
-                        value={formData.dob}
-                        required
-                    />
+                    <div className="flex gap-4">
+                        <input
+                            type="date"
+                            name="dob"
+                            className="w-1/2 p-2 rounded form-border"
+                            onChange={handleChange}
+                            value={formData.dob}
+                            required
+                        />
+                        <select
+                            name="gender"
+                            id="gender"
+                            className="w-1/2 form-border rounded bg-slate-900 cursor-pointer"
+                            onChange={handleChange}
+                            value={formData.gender}
+                        >
+                            <option value={""}>Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+
                     <div className="flex gap-4">
                         <select
                             id="state"

@@ -18,6 +18,7 @@ const registerStudent = asyncHandler(async (req, res) => {
         district,
         pin_code,
         address,
+        gender,
         mobile_no,
         aadhar_no,
         email,
@@ -32,6 +33,7 @@ const registerStudent = asyncHandler(async (req, res) => {
         !district ||
         !pin_code ||
         !address ||
+        !gender ||
         !mobile_no ||
         !aadhar_no ||
         !email ||
@@ -63,6 +65,7 @@ const registerStudent = asyncHandler(async (req, res) => {
         state,
         district,
         pin_code,
+        gender,
         address,
         mobile_no,
         aadhar_no,
