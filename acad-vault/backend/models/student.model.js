@@ -46,7 +46,7 @@ const student_schema = mongoose.Schema(
         higher_secondary: {
             school_name: String,
             board_name: String,
-            examination_year: String,
+            examination_year: Number,
             registration_no: String,
             enrollment_no: String, // roll no
             dicipline: {
