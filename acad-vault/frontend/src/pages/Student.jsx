@@ -321,6 +321,35 @@ const Student = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className="flex gap-8 mt-4">
+                            <div
+                                id="details-secondary-marks_total_actual"
+                                className="data-container w-1/2"
+                            >
+                                <div className="data-title">
+                                    Actual Total Marks
+                                </div>
+                                <div className="data-value">
+                                    {student.secondary.marks_total_actual
+                                        ? student.secondary.marks_total_actual
+                                        : "NULL"}
+                                </div>
+                            </div>
+                            <div
+                                id="details-secondary-marks_obtained_actual"
+                                className="data-container w-1/2"
+                            >
+                                <div className="data-title">
+                                    Actual Marks Obtained
+                                </div>
+                                <div className="data-value">
+                                    {student.secondary.marks_obtained_actual
+                                        ? student.secondary
+                                              .marks_obtained_actual
+                                        : "NULL"}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div id="details-higher_secondary" className="mt-12">
                         <div className="flex items-center justify-center">
@@ -458,7 +487,9 @@ const Student = () => {
                                 id="details-higher_secondary-marks_total_actual"
                                 className="data-container w-1/2"
                             >
-                                <div className="data-title">Actual Marks</div>
+                                <div className="data-title">
+                                    Actual Total Marks
+                                </div>
                                 <div className="data-value">
                                     {
                                         student.higher_secondary

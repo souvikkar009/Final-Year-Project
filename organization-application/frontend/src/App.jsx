@@ -5,11 +5,9 @@ axios.defaults.baseURL = "http://localhost:3030";
 axios.defaults.withCredentials = true;
 
 
-// s ky - 62b508519bc93bd6
-
-const secret_key = "fb9c07e77b10eeae";
-const org_id = "d60d6ce6";
-const access_key = "6b1cc194ea9198140dc9d4fc1b46845a";
+const secret_key = "107022c4dbcfd5bb";
+const org_id = "bc82b53a";
+const access_key = "ee84f8bf8038ac78d3e4aa108b796177";
 const redirect_uri = `http://localhost:3028/api/receive-data`;
 const frontend_redirect_uri = `http://localhost:5174/`;
 
