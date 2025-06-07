@@ -5,7 +5,7 @@ const HeaderTop = () => {
         <div className="main-gradient w-full py-1">
             <div className="text-center text-white font-medium">
                 A Digilocker Like Platform for Storing, Sharing and Verifying
-                Student's Academic Data
+                Students' Academic Data
             </div>
         </div>
     );

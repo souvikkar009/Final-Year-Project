@@ -8,7 +8,7 @@
 
 @layer components {
     .main-gradient {
-        @apply bg-gradient-to-r from-teal-600 to-violet-600;
+        @apply bg-gradient-to-r from-teal-400 to-violet-600;
     }
     .text-main-gradient {
         @apply bg-gradient-to-r from-emerald-600 to-purple-600 bg-clip-text text-transparent;
@@ -24,6 +24,15 @@
     }
     .form-border {
         @apply border border-slate-400;
+    }
+    .data-container {
+        @apply flex flex-col gap-2;
+    }
+    .data-title {
+        @apply text-white font-semibold text-xl pl-4;
+    }
+    .data-value {
+        @apply bg-slate-700 text-slate-300 py-2 px-4 rounded-lg font-bold;
     }
 }
 

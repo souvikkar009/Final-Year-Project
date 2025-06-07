@@ -1,15 +1,16 @@
 import React from "react";
 import Student from "../pages/Student";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Header from "../components/Header";
 
 const StudentLayout = () => {
-  const pathname = useLocation().pathname.substring(1);
-  return (
-    <div>
-      {pathname === "student" && <Student />}
-      <Outlet />
-    </div>
-  );
+    return (
+        <div>
+            <Header />
+            <Student />
+            <Outlet />
+        </div>
+    );
 };
 
 export default StudentLayout;

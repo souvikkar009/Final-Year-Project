@@ -63,21 +63,6 @@ const AppRouter = createBrowserRouter([
                     },
                 ],
             },
-            // { path: "/auth/student/login", element: <StudentLogin /> },
-            // { path: "/auth/student/register", element: <StudentRegister /> },
-            // {
-            //     path: "/auth/organization/login",
-            //     element: <OrganizationLogin />,
-            // },
-            // {
-            //     path: "/auth/organization/register",
-            //     element: <OrganizationRegister />,
-            // },
-            // { path: "/auth/institute/login", element: <InstituteLogin /> },
-            // {
-            //     path: "/auth/institute/register",
-            //     element: <InstituteRegister />,
-            // },
         ],
     },
 
@@ -87,7 +72,7 @@ const AppRouter = createBrowserRouter([
         element: <ProtectedRoute allowedRoles={["student"]} />,
         children: [
             {
-                path: "/student",
+                path: "/student/*",
                 element: <StudentLayout />,
             },
         ],
@@ -96,7 +81,7 @@ const AppRouter = createBrowserRouter([
         element: <ProtectedRoute allowedRoles={["institute"]} />,
         children: [
             {
-                path: "/institute",
+                path: "/institute/*",
                 element: <InstituteLayout />,
             },
         ],
@@ -105,7 +90,7 @@ const AppRouter = createBrowserRouter([
         element: <ProtectedRoute allowedRoles={["organization"]} />,
         children: [
             {
-                path: "/organization",
+                path: "/organization/*",
                 element: <OrganizationLayout />,
                 children: [
                     { index: true, element: <Organization /> },

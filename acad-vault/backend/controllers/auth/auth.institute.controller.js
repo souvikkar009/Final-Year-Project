@@ -114,10 +114,7 @@ const loginInstitute = expressAsyncHandler(async (req, res) => {
     }
 
     // check if the password matches
-    const isPasswordMatched = await bcrypt.compare(
-        password,
-        institute.password
-    );
+    const isPasswordMatched = bcrypt.compare(password, institute.password);
 
     // if the password don't match, throw invalid credential error
     if (!isPasswordMatched) {

@@ -15,7 +15,8 @@ const OrganizationRegister = () => {
     };
     const [formData, setFormData] = useState(initialState);
     const [authRes, setAuthRes] = useState("");
-    const [copied, setCopied] = useState(false);
+    const [copiedSecretKey, setCopiedSecretKey] = useState(false);
+    const [copiedOrgId, setCopiedOrgId] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -94,42 +95,78 @@ const OrganizationRegister = () => {
                 </div>
             </div>
             <div
-                className={`w-full h-screen fixed left-0 top-0 bg-gray-400 opacity-50 ${
+                className={`w-full h-screen fixed left-0 top-0 bg-slate-900 ${
                     authRes ? "block" : "hidden"
                 }`}
             ></div>
             {authRes && (
-                <div className="fixed bg-white z-10 opacity-100 border border-gray-400 shadow-lg max-w-lg rounded p-8">
+                <div className="fixed bg-slate-900 z-10 border border-slate-300 shadow-lg shadow-slate-300 max-w-lg rounded p-8">
                     <IoCloseSharp
-                        className="absolute right-4 top-4 text-2xl hover:text-red-700 cursor-pointer"
+                        className="absolute right-4 top-4 text-2xl text-white hover:text-red-700 cursor-pointer"
                         title="Close"
                         onClick={() => {
                             window.location.reload();
                         }}
                     />
-                    <div className="text-center text-xl mt-4">
+                    <div className="text-center text-teal-400 text-xl mt-4">
                         {authRes.message}
                     </div>
-                    <div className=" text-center my-4 font-bold">
-                        Copy the secret code
-                    </div>
-                    <div className="flex justify-center items-center gap-4">
-                        <div className={`bg-gray-100 py-2 px-4 rounded`}>
-                            <div
+                    {authRes.secret_key && (
+                        <div className="text-center text-white mt-4 mb-1 font-bold">
+                            Secret Code
+                        </div>
+                    )}
+
+                    <div className="flex items-center gap-4">
+                        <div className={`bg-slate-700 py-2 px-4 rounded grow`}>
+                            <span
                                 className={`${
-                                    copied && "bg-blue-700 text-white"
-                                }`}
+                                    copiedSecretKey && "bg-blue-700 text-white"
+                                } font-bold text-slate-300`}
                             >
                                 {authRes.secret_key}
-                            </div>
+                            </span>
                         </div>
                         <FaRegCopy
-                            className="text-2xl cursor-pointer"
+                            className="text-2xl cursor-pointer text-white"
                             onClick={async () => {
                                 await window.navigator.clipboard.writeText(
                                     authRes.secret_key
                                 );
-                                setCopied(true);
+                                setCopiedSecretKey(true);
+                                setTimeout(() => {
+                                    setCopiedSecretKey(false);
+                                }, 300);
+                            }}
+                        />
+                    </div>
+                    {authRes.org_id && (
+                        <div className="text-center text-white my-1 font-bold">
+                            Organization Id
+                        </div>
+                    )}
+                    <div className="flex items-center gap-4">
+                        <div
+                            className={`bg-slate-700 py-2 px-4 rounded-lg grow`}
+                        >
+                            <span
+                                className={`${
+                                    copiedOrgId && "bg-blue-700 text-white"
+                                } font-bold text-slate-300`}
+                            >
+                                {authRes.org_id}
+                            </span>
+                        </div>
+                        <FaRegCopy
+                            className="text-2xl cursor-pointer text-white"
+                            onClick={async () => {
+                                await window.navigator.clipboard.writeText(
+                                    authRes.org_id
+                                );
+                                setCopiedOrgId(true);
+                                setTimeout(() => {
+                                    setCopiedOrgId(false);
+                                }, 300);
                             }}
                         />
                     </div>

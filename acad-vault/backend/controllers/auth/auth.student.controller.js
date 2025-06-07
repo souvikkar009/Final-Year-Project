@@ -128,7 +128,7 @@ const loginStundent = asyncHandler(async (req, res) => {
     }
 
     // check if the password matches
-    const isPasswordMatched = await bcrypt.compare(password, student.password);
+    const isPasswordMatched = bcrypt.compare(password, student.password);
 
     // if the password don't match, throw invalid credential error
     if (!isPasswordMatched) {

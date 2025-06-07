@@ -1,15 +1,16 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Institute from "../pages/Institute";
+import Header from "../components/Header";
 
 const InstituteLayout = () => {
-  const pathname = useLocation().pathname.substring(1);
-  return (
-    <div>
-      {pathname === "institute" && <Institute />}
-      <Outlet />
-    </div>
-  );
+    return (
+        <div>
+            <Header />
+            <Institute />
+            <Outlet />
+        </div>
+    );
 };
 
 export default InstituteLayout;

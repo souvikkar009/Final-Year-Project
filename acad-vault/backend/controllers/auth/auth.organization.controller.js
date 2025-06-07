@@ -108,7 +108,7 @@ const loginOrganization = expressAsyncHandler(async (req, res) => {
     }
 
     // check if the password matches
-    const isPasswordMatched = await bcrypt.compare(
+    const isPasswordMatched = bcrypt.compare(
         password,
         organization.password
     );

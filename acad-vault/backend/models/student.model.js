@@ -13,7 +13,7 @@ const student_schema = mongoose.Schema(
         dob: Date,
         state: String,
         district: String,
-        gender: { type: String, enum: ["male", "female"], default: null },
+        gender: { type: String, enum: ["Male", "Female"], default: null },
         pin_code: Number,
         address: String,
         mobile_no: String,
@@ -51,7 +51,7 @@ const student_schema = mongoose.Schema(
             enrollment_no: String, // roll no
             dicipline: {
                 type: String,
-                enum: ["science", "arts", "commerce"],
+                enum: ["Science", "Arts", "Commerce"],
                 default: null,
             },
             subjects: { type: [String], default: null },
