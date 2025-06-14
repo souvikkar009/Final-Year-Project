@@ -17,7 +17,10 @@ const {
     validateToken,
 } = require("../middlewares/validateToken");
 const authorizeRoles = require("../middlewares/authorizeRoles");
-const loggedInUserInfo = require("../controllers/auth/auth.who.controller");
+const {
+    loggedInUserInfo,
+    logoutUser,
+} = require("../controllers/auth/auth.session.controller");
 
 const router = express.Router();
 
@@ -42,6 +45,13 @@ router.get(
     validateToken,
     authorizeRoles("student", "institute", "organization", "unauthorized"),
     loggedInUserInfo
+);
+
+router.get(
+    "/logout",
+    validateToken,
+    authorizeRoles("student", "institute", "organization"),
+    logoutUser
 );
 
 module.exports = router;

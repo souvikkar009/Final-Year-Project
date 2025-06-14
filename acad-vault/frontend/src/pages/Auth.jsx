@@ -6,7 +6,7 @@ const Auth = () => {
     const [openInstituteAuth, setOpenInstituteAuth] = useState(false);
     const [openOrganizationAuth, setOpenOrganizationAuth] = useState(false);
     return (
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mt-12">
             <div className="w-full max-w-2xl p-8 shadow shadow-slate-400 border border-slate-400 rounded-lg text-white font-semibold">
                 <div className="flex items-center justify-between">
                     <div

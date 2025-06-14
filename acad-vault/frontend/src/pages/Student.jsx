@@ -19,7 +19,7 @@ const Student = () => {
         fetchStudentData();
     }, []);
     return (
-        <div className="w-3/4 mx-auto mb-12 shadow-lg border border-slate-400 shadow-slate-400 p-8 rounded-lg text-white">
+        <div className="w-3/4 mx-auto my-12 shadow-lg border border-slate-400 shadow-slate-400 p-8 rounded-lg text-white">
             {student && (
                 <div>
                     <div className="flex items-center justify-center mb-2">

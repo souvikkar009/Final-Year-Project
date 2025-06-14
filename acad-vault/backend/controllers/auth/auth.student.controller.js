@@ -100,6 +100,7 @@ const registerStudent = asyncHandler(async (req, res) => {
         })
         .json({
             message: "Student Registration Successful",
+            success: true,
         });
 });
 
@@ -150,7 +151,7 @@ const loginStundent = asyncHandler(async (req, res) => {
             secure: true,
             sameSite: "lax",
         })
-        .json({ message: "User Logged In" });
+        .json({ message: "User Logged In", success: true });
 });
 
 module.exports = { registerStudent, loginStundent };
