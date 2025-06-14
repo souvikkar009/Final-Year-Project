@@ -4,12 +4,10 @@ const {
     registerStudentsInHigherStudy,
     uploadSecondaryAcademicsData,
     uploadHigherSecondaryAcademicsData,
+    getInstituteInfo,
 } = require("../controllers/institute.controller");
 
-const {
-    validateInstituteToken,
-    validateToken,
-} = require("../middlewares/validateToken");
+const { validateToken } = require("../middlewares/validateToken");
 
 const upload = require("../helper/multerStorage");
 
@@ -36,5 +34,7 @@ router.post(
     validateToken,
     registerStudentsInHigherStudy
 );
+
+router.get("/", validateToken, getInstituteInfo);
 
 module.exports = router;

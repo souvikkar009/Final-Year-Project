@@ -11,7 +11,7 @@ const loggedInUserInfo = asyncHandler(async (req, res) => {
 });
 
 /*
-@desc Info of Logged in User
+@desc Log out User
 @route GET /api/auth/logout
 @access Private
 */

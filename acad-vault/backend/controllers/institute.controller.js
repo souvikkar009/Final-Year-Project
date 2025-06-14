@@ -133,8 +133,24 @@ const uploadHigherSecondaryAcademicsData = expressAsyncHandler(
     }
 );
 
+/*
+@desc Get Institute Information
+@route POST api/institute
+@access Private
+*/
+const getInstituteInfo = expressAsyncHandler(async (req, res) => {
+    const { userId } = req.authData;
+
+    const institute = await Institute.findById({ _id: userId }).select(
+        "-password -__v -createdAt -updatedAt -role -_id"
+    );
+
+    res.json(institute);
+});
+
 module.exports = {
     uploadSecondaryAcademicsData,
     uploadHigherSecondaryAcademicsData,
     registerStudentsInHigherStudy,
+    getInstituteInfo,
 };
