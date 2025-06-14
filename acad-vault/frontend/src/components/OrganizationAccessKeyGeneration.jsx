@@ -154,8 +154,8 @@ const OrganizationAccessKeyGeneration = () => {
             });
     };
     return (
-        <div className="flex items-center justify-center mt-16">
-            <div className="w-full max-w-lg p-8 shadow-lg shadow-slate-400 border border-slate-400 rounded-lg">
+        <div className="flex items-center justify-center mt-12">
+            <div className="w-3/4 p-8 shadow-lg shadow-slate-400 border border-slate-400 rounded-lg">
                 <div className="text-2xl font-bold text-center text-teal-400 mb-6">
                     Generate Access Key
                 </div>

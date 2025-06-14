@@ -37,7 +37,7 @@ const StudentLogin = () => {
     };
 
     return (
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mt-12">
             <div className="w-full max-w-xl p-8 shadow-lg shadow-slate-400 border border-slate-400 rounded-lg text-teal-400">
                 <h2 className="text-2xl font-bold text-center mb-6">
                     Student Log In

@@ -60,7 +60,7 @@ const StudentRegister = () => {
     };
 
     return (
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mt-12">
             <div className="w-full max-w-xl p-8 shadow-lg shadow-slate-400 border border-slate-300 rounded-lg ">
                 <h2 className="text-2xl font-bold text-center mb-6 text-teal-400">
                     Student Registration
