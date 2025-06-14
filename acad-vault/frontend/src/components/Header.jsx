@@ -17,7 +17,7 @@ const Header = () => {
     };
 
     return (
-        <header className="h-16 flex items-center justify-end relative text-white  shadow shadow-slate-400">
+        <header className="h-16 flex items-center justify-end relative text-white shadow shadow-slate-400">
             <NavLink className={"absolute right-1/2 translate-x-1/2"} to={"/"}>
                 <div className=" font-bold text-4xl">AcadVault</div>
             </NavLink>

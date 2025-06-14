@@ -20,6 +20,8 @@ import OrganizationAccessKeyGeneration from "../components/OrganizationAccessKey
 import Organization from "../pages/Organization";
 import Auth from "../pages/Auth";
 import AuthLayout from "../layouts/AuthLayout";
+import Institute from "../pages/Institute";
+import Student from "../pages/Student";
 
 const AppRouter = createBrowserRouter([
     // Home Page
@@ -72,8 +74,9 @@ const AppRouter = createBrowserRouter([
         element: <ProtectedRoute allowedRoles={["student"]} />,
         children: [
             {
-                path: "/student/*",
+                path: "/student",
                 element: <StudentLayout />,
+                children: [{ index: true, element: <Student /> }],
             },
         ],
     },
@@ -81,8 +84,9 @@ const AppRouter = createBrowserRouter([
         element: <ProtectedRoute allowedRoles={["institute"]} />,
         children: [
             {
-                path: "/institute/*",
+                path: "/institute",
                 element: <InstituteLayout />,
+                children: [{ index: true, element: <Institute /> }],
             },
         ],
     },
@@ -90,7 +94,7 @@ const AppRouter = createBrowserRouter([
         element: <ProtectedRoute allowedRoles={["organization"]} />,
         children: [
             {
-                path: "/organization/*",
+                path: "/organization",
                 element: <OrganizationLayout />,
                 children: [
                     { index: true, element: <Organization /> },
