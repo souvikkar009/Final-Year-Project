@@ -4,12 +4,12 @@ import Unauthorized from "../components/Unauthorized";
 import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home";
 import PublicRoutes from "../routes/PublicRoutes";
-import StudentRegister from "../components/StudentRegister";
-import StudentLogin from "../components/StudentLogin";
-import OrganizationLogin from "../components/OrganizationLogin";
-import OrganizationRegister from "../components/OrganizationRegister";
-import InstituteLogin from "../components/InstituteLogin";
-import InstituteRegister from "../components/InstituteRegister";
+import StudentRegister from "../components/registers/StudentRegister";
+import StudentLogin from "../components/logins/StudentLogin";
+import OrganizationLogin from "../components/logins/OrganizationLogin";
+import OrganizationRegister from "../components/registers/OrganizationRegister";
+import InstituteLogin from "../components/logins/InstituteLogin";
+import InstituteRegister from "../components/registers/InstituteRegister";
 import ProtectedRoute from "./ProtectedRoutes";
 
 import StudentLayout from "../layouts/StudentLayout";
@@ -22,6 +22,8 @@ import Auth from "../pages/Auth";
 import AuthLayout from "../layouts/AuthLayout";
 import Institute from "../pages/Institute";
 import Student from "../pages/Student";
+import UploadStudentData from "../components/UploadStudentData";
+import RegisterHigherStudies from "../components/RegisterHigherStudies";
 
 const AppRouter = createBrowserRouter([
     // Home Page
@@ -86,7 +88,17 @@ const AppRouter = createBrowserRouter([
             {
                 path: "/institute",
                 element: <InstituteLayout />,
-                children: [{ index: true, element: <Institute /> }],
+                children: [
+                    { index: true, element: <Institute /> },
+                    {
+                        path: "upload-student-data",
+                        element: <UploadStudentData />,
+                    },
+                    {
+                        path: "register-higher-studies",
+                        element: <RegisterHigherStudies />,
+                    },
+                ],
             },
         ],
     },

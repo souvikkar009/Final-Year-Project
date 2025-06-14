@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
-import OrganizationSideBar from "../components/OrganizationSideBar";
+import OrganizationSideBar from "../components/sidebars/OrganizationSideBar";
 
 const OrganizationLayout = () => {
     return (

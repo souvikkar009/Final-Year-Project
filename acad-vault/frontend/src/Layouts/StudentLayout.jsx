@@ -1,10 +1,25 @@
-import React from "react";
-import Student from "../pages/Student";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
-import StudentSideBar from "../components/StudentSideBar";
+import StudentSideBar from "../components/sidebars/StudentSideBar";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:3030";
+axios.defaults.withCredentials = true;
 
 const StudentLayout = () => {
+    const [student, setStudent] = useState(null);
+    useEffect(() => {
+        const fetchStudentData = async () => {
+            try {
+                const studentData = (await axios.get("api/student")).data;
+                setStudent(studentData);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchStudentData();
+    }, []);
     return (
         <div className="flex flex-col h-screen">
             <Header />
@@ -13,7 +28,7 @@ const StudentLayout = () => {
                     <StudentSideBar />
                 </div>
                 <div className="flex-1 overflow-y-auto">
-                    <Outlet />
+                    <Outlet context={student} />
                 </div>
             </div>
         </div>

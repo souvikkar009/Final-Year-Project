@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { textToArrayOfStrings } from "../utils/textToArrayOfStrings";
+import { textToArrayOfStrings } from "../../utils/textToArrayOfStrings";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 
@@ -26,7 +26,10 @@ const AcademicInstituteRegister = () => {
             e.target.value === "higher_studies"
         ) {
             setIsHigherStudy(true);
-        } else {
+        } else if (
+            e.target.name === "institute_level" &&
+            e.target.value !== "higher_studies"
+        ) {
             setIsHigherStudy(false);
         }
     };

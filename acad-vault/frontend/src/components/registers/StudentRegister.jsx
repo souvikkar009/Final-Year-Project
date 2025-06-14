@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { state_names } from "../resources/States";
+import { state_names } from "../../resources/States";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 

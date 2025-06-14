@@ -1,23 +1,7 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
-axios.defaults.baseURL = "http://localhost:3030";
-axios.defaults.withCredentials = true;
+import { useOutletContext } from "react-router-dom";
 
 const Student = () => {
-    const [student, setStudent] = useState(null);
-    useEffect(() => {
-        const fetchStudentData = async () => {
-            try {
-                const studentData = (await axios.get("api/student")).data;
-                setStudent(studentData);
-                console.log(studentData);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchStudentData();
-    }, []);
+    const student = useOutletContext();
     return (
         <div className="my-12 w-9/10 mx-auto shadow-lg border border-slate-400 shadow-slate-400 p-8 rounded-lg text-white">
             {student && (
