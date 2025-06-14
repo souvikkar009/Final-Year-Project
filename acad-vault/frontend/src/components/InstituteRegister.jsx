@@ -26,6 +26,8 @@ const AcademicInstituteRegister = () => {
             e.target.value === "higher_studies"
         ) {
             setIsHigherStudy(true);
+        } else {
+            setIsHigherStudy(false);
         }
     };
 
@@ -48,7 +50,7 @@ const AcademicInstituteRegister = () => {
             .then((response) => {
                 alert(response.data.message);
                 setFormData(initialState);
-                // window.location.reload();
+                window.location.reload();
             })
             .catch((error) => {
                 alert(error.response.data.message);
