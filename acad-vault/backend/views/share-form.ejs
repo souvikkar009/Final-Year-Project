@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>Authorize Access</title>
+        <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
         <h2>Authorize Data Access</h2>
@@ -18,7 +19,7 @@
                 name="frontend_redirect_uri"
                 value="<%= frontend_redirect_uri %>"
             />
-            <input type="hidden" name="access_key" value="<%= access_key %>" />
+            <input type="hidden" name="accessing_data" value="<%= accessing_data %>" />
 
             <label>AvId</label><br />
             <input type="text" name="avid" required /><br />

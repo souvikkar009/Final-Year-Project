@@ -6,6 +6,7 @@ const initiateIds = require("./others/initiateIds");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
@@ -17,7 +18,9 @@ const corsOption = {
 app.use(cors(corsOption));
 
 app.set("view engine", "ejs"); // Set EJS as the view engine
-app.set("views", "./views"); // Optional: set views directory if not default
+app.set("views", path.join(__dirname, "views")); // Optional: set views directory if not default
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(express.urlencoded({ extended: true })); // To handle form data
 
 // connect db

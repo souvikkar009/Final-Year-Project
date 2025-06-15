@@ -34,8 +34,11 @@
     .data-value {
         @apply bg-slate-700 text-slate-300 py-2 px-4 rounded-lg font-bold;
     }
-    .sidebar-item{
-        @apply bg-slate-700 text-slate-300 mt-6 mx-8 py-2 rounded cursor-pointer font-semibold block text-center
+    .sidebar-item {
+        @apply bg-slate-700 text-slate-300 mt-6 mx-8 py-2 rounded cursor-pointer font-semibold block text-center;
+    }
+    .my-file-upload {
+        @apply border border-slate-400 py-2 px-12 rounded-xl hover:bg-slate-700 cursor-pointer text-lg font-semibold;
     }
 }
 
@@ -44,6 +47,10 @@
     input[type="number"]::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
+    }
+
+    input[type="file"] {
+        display: none;
     }
 }
 

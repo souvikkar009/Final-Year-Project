@@ -3,7 +3,6 @@ import { useOutletContext } from "react-router-dom";
 
 const Institute = () => {
     const institute = useOutletContext();
-    console.log(institute);
 
     return (
         <div className="my-12 w-9/10 mx-auto shadow-lg border border-slate-400 shadow-slate-400 p-8 rounded-lg text-white">

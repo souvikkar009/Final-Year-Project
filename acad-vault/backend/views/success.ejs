@@ -9,6 +9,7 @@
         <script>
             const payload = {
                 status: "success",
+                studentData: "<%= studentDataStr %>",
             };
 
             const thirdPartyOrigin = new URL("<%= frontendRedirect %>").origin;
@@ -21,7 +22,7 @@
             // Optional: redirect the popup instead of closing
             setTimeout(() => {
                 window.location.href = "<%= frontendRedirect %>";
-                // window.close();
+                window.close();
             }, 500);
         </script>
     </body>

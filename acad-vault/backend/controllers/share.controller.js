@@ -30,10 +30,17 @@ const provideDataSharingForm = expressAsyncHandler(async (req, res) => {
     const { redirect_uri, org_id, access_key, frontend_redirect_uri } =
         req.query;
 
+    const { access_keys } = await Organization.findById(org_id).select(
+        "access_keys"
+    );
+    const accessing_data = access_keys.get(access_key);
+
+    // console.log(accessing_data);
+
     res.render("share-form", {
         redirect_uri,
         org_id,
-        access_key,
+        accessing_data: JSON.stringify(accessing_data),
         frontend_redirect_uri,
     });
 });
@@ -47,13 +54,12 @@ const provideDataSharingForm = expressAsyncHandler(async (req, res) => {
 const shareData = expressAsyncHandler(async (req, res) => {
     const {
         redirect_uri,
-        org_id,
-        access_key,
+        accessing_data,
         avid,
         password,
         frontend_redirect_uri,
     } = req.body;
-    const student = await Student.findOne({ avid });
+    const student = await Student.findById(avid);
 
     // check if the password matches
     const isPasswordMatched = bcrypt.compare(password, student.password);
@@ -64,18 +70,19 @@ const shareData = expressAsyncHandler(async (req, res) => {
         throw new Error("Invalid Credentials");
     }
 
-    const { access_keys } = await Organization.findById(org_id).select(
-        "access_keys"
-    );
-    const accessing_data = access_keys.get(access_key);
-    const studentData = getAccessingData(student, accessing_data);
-    console.log(studentData);
+    const studentData = getAccessingData(student, JSON.parse(accessing_data));
+    // console.log(studentData);
 
     await axios.post(redirect_uri, {
         studentData,
     });
 
-    res.render("success", { frontendRedirect: frontend_redirect_uri });
+    const studentDataStr = JSON.stringify(studentData).replace(/</g, "\\u003c");
+
+    res.render("success", {
+        frontendRedirect: frontend_redirect_uri,
+        studentDataStr,
+    });
 });
 
 module.exports = { provideValidationResult, provideDataSharingForm, shareData };
