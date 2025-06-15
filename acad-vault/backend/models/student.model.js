@@ -25,12 +25,15 @@ const student_schema = mongoose.Schema(
 
         // data to be stored by academic institutions
         secondary: {
+            // required during registration with avid
             school_name: String,
             board_name: String,
+            institute_id: String,
+            subjects: [String],
+            // will be uploaded after result
             examination_year: Number,
             registration_no: String,
             enrollment_no: String, // roll no
-            subjects: [String],
             marks_subjects: {
                 type: mongoose.Schema.Types.Map,
                 default: {},
@@ -44,17 +47,21 @@ const student_schema = mongoose.Schema(
             marks_obtained_actual: Number,
         },
         higher_secondary: {
+            // required during registration with avid
             school_name: String,
             board_name: String,
-            examination_year: Number,
-            registration_no: String,
-            enrollment_no: String, // roll no
+            institute_id: String,
             dicipline: {
                 type: String,
                 enum: ["Science", "Arts", "Commerce"],
                 default: null,
             },
             subjects: { type: [String], default: null },
+
+            // will be uploaded after result
+            examination_year: Number,
+            registration_no: String,
+            enrollment_no: String, // roll no
             marks_subjects: {
                 type: mongoose.Schema.Types.Map,
                 default: {},

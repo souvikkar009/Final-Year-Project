@@ -5,6 +5,8 @@ const {
     uploadSecondaryAcademicsData,
     uploadHigherSecondaryAcademicsData,
     getInstituteInfo,
+    registerStudentInSecondary,
+    registerStudentInHigherSecondary,
 } = require("../controllers/institute.controller");
 
 const { validateToken } = require("../middlewares/validateToken");
@@ -13,16 +15,26 @@ const upload = require("../helper/multerStorage");
 
 const router = express.Router();
 
+// Student Secondary Registration
+router.patch("/secondary/register", validateToken, registerStudentInSecondary);
+
+// Student Secondary Registration
+router.patch(
+    "/higher_secondary/register",
+    validateToken,
+    registerStudentInHigherSecondary
+);
+
 // Student Secondary Academics Data Upload Using File
 router.post(
-    "/secondary/upload/academic-data",
+    "/secondary/upload-data",
     validateToken,
     upload.single("file"),
     uploadSecondaryAcademicsData
 );
 // Student Higher Secondary Academics Data Upload Using File
 router.post(
-    "/higher-secondary/upload/academic-data",
+    "/higher_secondary/upload-data",
     validateToken,
     upload.single("file"),
     uploadHigherSecondaryAcademicsData

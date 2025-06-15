@@ -12,9 +12,11 @@ const studentDateMap = {
     aadhar_no: "aadhar_no",
     email: "email",
     // secondary information
+    secondary_institute_id: "secondary.institute_id",
     secondary_school_name: "secondary.school_name",
     secondary_board_name: "secondary.board_name",
     secondary_examination_year: "secondary.examination_year",
+    secondary_registration_no: "secondary.registration_no",
     secondary_enrollment_no: "secondary.enrollment_no",
     secondary_subjects: "secondary.subjects",
     secondary_marks_subjects: "secondary.marks_subjects", // special case to handle
@@ -23,9 +25,11 @@ const studentDateMap = {
     secondary_marks_total_actual: "secondary.marks_total_actual",
     secondary_marks_obtained_actual: "secondary.marks_obtained_actual",
     // higher secondary information
+    higher_secondary_institute_id: "higher_secondary.institute_id",
     higher_secondary_school_name: "higher_secondary.school_name",
     higher_secondary_board_name: "higher_secondary.board_name",
     higher_secondary_examination_year: "higher_secondary.examination_year",
+    higher_secondary_registration_no: "higher_secondary.registration_no",
     higher_secondary_enrollment_no: "higher_secondary.enrollment_no",
     higher_secondary_dicipline: "higher_secondary.dicipline",
     higher_secondary_subjects: "higher_secondary.subjects",

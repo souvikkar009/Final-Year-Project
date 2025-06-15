@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const programSchema = mongoose.Schema({
     institute_name: String,
+    institute_id: String,
     enrollment_no: String, // institute provided
     registration_no: String, // institute provided
     program_level: String, // undergraduation, postgraduation, diploma, iti
