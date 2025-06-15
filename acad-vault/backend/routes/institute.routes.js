@@ -7,6 +7,8 @@ const {
     getInstituteInfo,
     registerStudentInSecondary,
     registerStudentInHigherSecondary,
+    registerStudentInSecondaryBulk,
+    registerStudentInHigherSecondaryBulk,
 } = require("../controllers/institute.controller");
 
 const { validateToken } = require("../middlewares/validateToken");
@@ -18,11 +20,27 @@ const router = express.Router();
 // Student Secondary Registration
 router.patch("/secondary/register", validateToken, registerStudentInSecondary);
 
-// Student Secondary Registration
+// Student Higher Secondary Registration
 router.patch(
     "/higher_secondary/register",
     validateToken,
     registerStudentInHigherSecondary
+);
+
+// Student Secondary Registration Bulk
+router.post(
+    "/secondary/register-bulk",
+    validateToken,
+    upload.single("file"),
+    registerStudentInSecondaryBulk
+);
+
+// Student Higher Secondary Registration Bulk
+router.post(
+    "/higher_secondary/register-bulk",
+    validateToken,
+    upload.single("file"),
+    registerStudentInHigherSecondaryBulk
 );
 
 // Student Secondary Academics Data Upload Using File

@@ -53,6 +53,84 @@ const registerStudentInSecondary = expressAsyncHandler(async (req, res) => {
 });
 
 /*
+@desc register student in Secondary
+@route POST api/institute/secondary/register-bulk
+@access Private
+*/
+
+const registerStudentInSecondaryBulk = expressAsyncHandler(async (req, res) => {
+    const filePath = req.file.path;
+    const institute_id = req.authData.userId;
+    const institute = await Institute.findById(institute_id).select(
+        "institute_name institute_level -_id"
+    );
+    // console.log(institute);
+    if (!institute || institute.institute_level !== "secondary") {
+        res.status(401);
+        throw new Error("Unauthorized!!!...");
+    }
+
+    try {
+        const fileData = await fs.readFile(filePath, "utf-8");
+        const payload = JSON.parse(fileData);
+
+        let noOfUpdates = 0;
+        const payloadSize = payload.length;
+
+        for (const student_data of payload) {
+            const { avid, ...secondary_data } = student_data;
+
+            const secondary = {};
+            for (let dataPoint in secondary_data) {
+                secondary[studentDateMap[dataPoint]] =
+                    secondary_data[dataPoint];
+            }
+            // console.log(secondary);
+
+            const student_institute_id_data = await Student.findById(
+                avid
+            ).select("secondary.institute_id -_id");
+
+            if (!student_institute_id_data) {
+                continue;
+            }
+
+            const stundent_institute_id =
+                student_institute_id_data.secondary.institute_id;
+
+            // console.log(stundent_institute_id, institute_id);
+            // console.log(typeof stundent_institute_id, typeof institute_id);
+
+            // no type checking
+            if (stundent_institute_id != institute_id) continue;
+
+            const student = await Student.findByIdAndUpdate(avid, secondary, {
+                new: true,
+            });
+
+            if (student) {
+                noOfUpdates++;
+            }
+        }
+
+        // Delete the file after processing
+        await fs.unlink(filePath);
+        console.log(`${filePath} file deleted successfully`);
+
+        // Send final response
+        res.json({
+            message: noOfUpdates + " student secondary registration done",
+            requestedUpdates: payloadSize,
+            successfulUpdates: noOfUpdates,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500);
+        throw new Error("Internal server error while processing the file");
+    }
+});
+
+/*
 @desc register student in Higher Secondary
 @route PATCH api/institute/higher_secondary/register
 @access Private
@@ -103,6 +181,89 @@ const registerStudentInHigherSecondary = expressAsyncHandler(
             message: `Student Successfully registered in Higher Secondary Level`,
             success: true,
         });
+    }
+);
+
+/*
+@desc register student in Higher Secondary
+@route POST api/institute/higher_secondary/register-bulk
+@access Private
+*/
+
+const registerStudentInHigherSecondaryBulk = expressAsyncHandler(
+    async (req, res) => {
+        const filePath = req.file.path;
+        const institute_id = req.authData.userId;
+        const institute = await Institute.findById(institute_id).select(
+            "institute_name institute_level -_id"
+        );
+        // console.log(institute.institute_level);
+
+        if (!institute || institute.institute_level !== "higher_secondary") {
+            res.status(401);
+            throw new Error("Unauthorized!!!...");
+        }
+        try {
+            const fileData = await fs.readFile(filePath, "utf-8");
+            const payload = JSON.parse(fileData);
+
+            let noOfUpdates = 0;
+            const payloadSize = payload.length;
+
+            for (const student_data of payload) {
+                const { avid, ...higher_secondary_data } = student_data;
+
+                const higher_secondary = {};
+                for (let dataPoint in higher_secondary_data) {
+                    higher_secondary[studentDateMap[dataPoint]] =
+                        higher_secondary_data[dataPoint];
+                }
+                // console.log(higher_secondary);
+
+                const student_institute_id_data = await Student.findById(
+                    avid
+                ).select("higher_secondary.institute_id -_id");
+
+                if (!student_institute_id_data) {
+                    continue;
+                }
+
+                const stundent_institute_id =
+                    student_institute_id_data.higher_secondary.institute_id;
+
+                // console.log(stundent_institute_id, institute_id);
+                // console.log(typeof stundent_institute_id, typeof institute_id);
+
+                // no type checking
+                if (stundent_institute_id != institute_id) continue;
+
+                const student = await Student.findByIdAndUpdate(
+                    avid,
+                    higher_secondary,
+                    { new: true }
+                );
+
+                if (student) {
+                    noOfUpdates++;
+                }
+            }
+
+            // Delete the file after processing
+            await fs.unlink(filePath);
+            console.log(`${filePath} file deleted successfully`);
+
+            // Send final response
+            res.json({
+                message:
+                    noOfUpdates + " student higher secondary registration done",
+                requestedUpdates: payloadSize,
+                successfulUpdates: noOfUpdates,
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500);
+            throw new Error("Internal server error while processing the file");
+        }
     }
 );
 
@@ -312,4 +473,6 @@ module.exports = {
     getInstituteInfo,
     registerStudentInSecondary,
     registerStudentInHigherSecondary,
+    registerStudentInSecondaryBulk,
+    registerStudentInHigherSecondaryBulk,
 };
