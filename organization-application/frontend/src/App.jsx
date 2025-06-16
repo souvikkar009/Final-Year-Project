@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import { RouterProvider } from "react-router-dom";
+import AppRouter from "./routes/AppRouter";
+import { AuthProvider } from "./routes/AuthContext";
 
-axios.defaults.baseURL = "http://localhost:3030";
+axios.defaults.baseURL = "http://localhost:3028";
 axios.defaults.withCredentials = true;
 
 const secret_key = "107022c4dbcfd5bb";
@@ -11,53 +14,57 @@ const redirect_uri = `http://localhost:3028/api/receive-data`;
 const frontend_redirect_uri = `http://localhost:5174/`;
 
 const App = () => {
-  useEffect(() => {
-    const handleMessage = (event) => {
-      // if (event.origin !== "your_target_origin") {
-      //   // Verify the origin of the message
-      //   return;
-      // }
+  // useEffect(() => {
+  //   const handleMessage = (event) => {
+  //     // if (event.origin !== "your_target_origin") {
+  //     //   // Verify the origin of the message
+  //     //   return;
+  //     // }
 
-      const encodedStudentData = event.data.studentData;
+  //     const encodedStudentData = event.data.studentData;
 
-      const decodedStudentData = encodedStudentData.replace(/&#34;/g, '"');
-      const studentData = JSON.parse(decodedStudentData);
-      console.log(studentData);
+  //     const decodedStudentData = encodedStudentData.replace(/&#34;/g, '"');
+  //     const studentData = JSON.parse(decodedStudentData);
+  //     console.log(studentData);
 
-      // Handle the message data here
-    };
+  //     // Handle the message data here
+  //   };
 
-    window.addEventListener("message", handleMessage);
+  //   window.addEventListener("message", handleMessage);
 
-    return () => {
-      window.removeEventListener("message", handleMessage);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("message", handleMessage);
+  //   };
+  // }, []);
   return (
-    <div>
-      <div
-        className="cursor-pointer"
-        onClick={async () => {
-          await axios
-            .get(
-              `/api/share?org_id=${org_id}&access_key=${access_key}&redirect_uri=${redirect_uri}&frontend_redirect_uri=${frontend_redirect_uri}`,
-              {
-                headers: {
-                  "secret-key": secret_key,
-                },
-              }
-            )
-            .then((res) => {
-              const { form_page } = res.data;
-              window.open(form_page, "_blank", "width=500,height=500");
-              // console.log(form_page);
-            })
-            .catch((res) => console.log(res.response.data));
-        }}
-      >
-        Click Here
-      </div>
-    </div>
+    <AuthProvider>
+      <RouterProvider router={AppRouter} />
+    </AuthProvider>
+
+    // <div>
+    //   <div
+    //     className="cursor-pointer"
+    //     onClick={async () => {
+    //       await axios
+    //         .get(
+    //           `/api/share?org_id=${org_id}&access_key=${access_key}&redirect_uri=${redirect_uri}&frontend_redirect_uri=${frontend_redirect_uri}`,
+    //           {
+    //             headers: {
+    //               "secret-key": secret_key,
+    //             },
+    //           }
+    //         )
+    //         .then((res) => {
+    //           const { form_page } = res.data;
+    //           window.open(form_page, "_blank", "width=500,height=500");
+    //           // console.log(form_page);
+    //         })
+    //         .catch((res) => console.log(res.response.data));
+    //     }}
+    //   >
+    //     Click Here
+    //   </div>
+    // </div>
   );
 };
 

@@ -1,1 +1,82 @@
 @import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-slate-900;
+  }
+}
+
+@layer components {
+  .form-border {
+    @apply border border-slate-400;
+  }
+  .input-name {
+    @apply text-slate-200 font-semibold text-lg mb-1 ml-2;
+  }
+  .main-gradient {
+    @apply bg-gradient-to-r from-teal-400 to-violet-600;
+  }
+  .text-main-gradient {
+    @apply bg-gradient-to-r from-emerald-600 to-purple-600 bg-clip-text text-transparent;
+  }
+  .auth-entity {
+    @apply hover:bg-slate-500 px-8 py-2 rounded cursor-pointer;
+  }
+  .auth-type-container {
+    @apply absolute left-1/2 -translate-x-1/2 w-32 border rounded p-2 bg-slate-900;
+  }
+  .auth-type {
+    @apply cursor-pointer py-1 text-center hover:bg-slate-500 rounded;
+  }
+
+  .data-container {
+    @apply flex flex-col gap-2;
+  }
+  .data-title {
+    @apply text-white font-semibold text-xl pl-4;
+  }
+  .data-value {
+    @apply bg-slate-700 text-slate-300 py-2 px-4 rounded-lg font-bold;
+  }
+  .sidebar-item {
+    @apply bg-slate-700 text-slate-300 mt-6 mx-8 py-2 rounded cursor-pointer font-semibold block text-center;
+  }
+  .my-file-upload {
+    @apply border border-slate-400 py-2 px-12 rounded-xl hover:bg-slate-700 cursor-pointer text-lg font-semibold;
+  }
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+}
+
+.swiper-button-next {
+  cursor: pointer;
+  top: 95%;
+  transform: translateY(-50%);
+  right: 2%;
+}
+
+.swiper-button-prev {
+  cursor: pointer;
+  top: 95%;
+  transform: translateY(-50%);
+  left: 90%;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}

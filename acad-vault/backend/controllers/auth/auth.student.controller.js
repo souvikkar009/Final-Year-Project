@@ -120,7 +120,7 @@ const loginStundent = asyncHandler(async (req, res) => {
     }
 
     // check if the student is registered or not
-    const student = await Student.findById({ _id: avid });
+    const student = await Student.findById(avid);
 
     // if the student is not registered then throw error
     if (!student) {
