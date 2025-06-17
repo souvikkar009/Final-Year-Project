@@ -48,6 +48,7 @@ const registerOrganization = expressAsyncHandler(async (req, res) => {
     const organization = await Organization.create({
         _id,
         organization_name,
+        org_id: _id,
         email,
         password: hashed_password,
         secret_key: hashed_secret_key,
@@ -108,10 +109,7 @@ const loginOrganization = expressAsyncHandler(async (req, res) => {
     }
 
     // check if the password matches
-    const isPasswordMatched = bcrypt.compare(
-        password,
-        organization.password
-    );
+    const isPasswordMatched = bcrypt.compare(password, organization.password);
 
     // if the password don't match, throw invalid credential error
     if (!isPasswordMatched) {

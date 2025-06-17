@@ -4,16 +4,24 @@ import AdminLogin from "../components/AdminLogin";
 import ProtectedRoutes from "./ProtectedRoutes";
 import AdminLayout from "../layouts/AdminLayout";
 import Dashboard from "../components/Dashboard";
+import ShareData from "../components/ShareData";
+import ThankYou from "../components/ThankYou";
+import Failure from "../components/Failure";
 
 const AppRouter = createBrowserRouter([
   // Home Page
   {
     path: "/",
     element: <RootLayout />,
-    children: [{ path: "auth", element: <AdminLogin /> }],
+    children: [
+      { index: true, element: <ShareData /> },
+      { path: "auth", element: <AdminLogin /> },
+      { path: "thankyou", element: <ThankYou /> },
+      { path: "failure", element: <Failure /> },
+    ],
   },
   {
-    element: <ProtectedRoutes allowedRoles={"admin"} />,
+    element: <ProtectedRoutes allowedRoles={["admin"]} />,
     children: [
       {
         path: "/admin",

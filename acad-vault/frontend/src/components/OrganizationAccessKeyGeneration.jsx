@@ -342,12 +342,12 @@ const OrganizationAccessKeyGeneration = () => {
                 }`}
             ></div>
             {accessKeyRes && (
-                <div className="fixed w-3/5 z-10 bg-slate-900 border border-gray-400 shadow-lg max-w-lg rounded p-8">
+                <div className="fixed right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 tran w-3/5 z-10 bg-slate-900 border border-gray-400 shadow-lg max-w-lg rounded p-8">
                     <IoCloseSharp
                         className="absolute right-4 top-4 text-2xl text-white hover:text-red-700 cursor-pointer"
                         title="Close"
                         onClick={() => {
-                            window.location.reload();
+                            window.location.replace("/organization");
                         }}
                     />
                     <div className="text-center text-xl mt-4 text-teal-400 font-semibold">

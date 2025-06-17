@@ -11,8 +11,8 @@ const validateDataAccess = asyncHandler(async (req, res, next) => {
     const secret_key_value = req.headers["secret-key"];
 
     if (!secret_key_value) {
-        res.status(401);
-        throw new Error("Unauthorized");
+        res.status(401).render("failure");
+        return;
     }
 
     const organization = await Organization.findById({
@@ -20,8 +20,8 @@ const validateDataAccess = asyncHandler(async (req, res, next) => {
     }).select("_id access_keys secret_key");
 
     if (!organization) {
-        res.status(400);
-        throw new Error("Unauthorized");
+        res.status(401).render("failure");
+        return;
     }
     const { access_keys, secret_key } = organization;
 
@@ -30,15 +30,15 @@ const validateDataAccess = asyncHandler(async (req, res, next) => {
 
     // if the secret key don't match, throw invalid credential error
     if (!isSecretKeyMatched) {
-        res.status(401);
-        throw new Error("Unauthorized");
+        res.status(401).render("failure");
+        return;
     }
 
     const accessing_data = access_keys.get(access_key_val);
 
     if (!accessing_data || accessing_data.size <= 0) {
-        res.status(400);
-        throw new Error("Wrong Access Key");
+        res.status(401).render("failure");
+        return;
     }
     next();
 });

@@ -112,7 +112,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
 */
 const getLoggedInAdmin = asyncHandler(async (req, res) => {
   console.log(req.authData);
-  res.json(req.authData);
+  res.status(200).json(req.authData);
 });
 
 /*

@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router";
+import { NavLink } from "react-router";
 import { useAuth } from "../routes/AuthContext";
 import axios from "axios";
 
@@ -39,7 +39,7 @@ const Header = () => {
 
       {userRole && userRole !== "unauthorized" && (
         <button
-          className="py-2 px-4 mr-8 font-semibold rounded cursor-pointer bg-teal-600"
+          className="py-2 px-4 mr-8 font-semibold rounded cursor-pointer bg-sky-600"
           onClick={handleLogOut}
         >
           Logout

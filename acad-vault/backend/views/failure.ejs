@@ -4,26 +4,21 @@
         <title>Authorized</title>
     </head>
     <body>
-        <p>Authorizing... Please wait.</p>
+        <p>Failed to Share Data... Plz Try Again</p>
 
         <script>
             const payload = {
-                status: "success",
-                // studentData: "<%= studentDataStr %>",
+                status: "failure",
             };
 
             const thirdPartyOrigin = new URL("<%= frontendRedirect %>").origin;
 
-            // Send message to parent window
-
-            // window.location.href = "<%= frontendRedirect %>";
-            // Optional: redirect the popup instead of closing
             setTimeout(() => {
                 if (window.opener) {
                     window.opener.postMessage(payload, thirdPartyOrigin);
                 }
                 window.close();
-            }, 1000);
+            }, 2000);
         </script>
     </body>
 </html>

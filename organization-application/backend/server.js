@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 // cors
 const corsOption = {
-  origin: ["http://localhost:5174"],
+  origin: "http://localhost:4040",
   credentials: true,
 };
 app.use(cors(corsOption));
@@ -32,6 +32,8 @@ app.set("views", "./views"); // Optional: set views directory if not default
 app.use(express.urlencoded({ extended: true })); // To handle form data
 
 app.use("/api/admin", require("./routes/admin.routes"));
+
+app.use("/api/getdata", require("./routes/getdata.routes"));
 
 // POST /api/receive-data
 app.post("/api/receive-data", (req, res) => {

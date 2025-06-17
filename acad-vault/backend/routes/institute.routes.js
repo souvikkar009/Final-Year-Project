@@ -11,7 +11,7 @@ const {
     registerStudentInHigherSecondaryBulk,
 } = require("../controllers/institute.controller");
 
-const { validateToken } = require("../middlewares/validateToken");
+const { validateToken, validateTokenForAll } = require("../middlewares/validateToken");
 
 const upload = require("../helper/multerStorage");
 

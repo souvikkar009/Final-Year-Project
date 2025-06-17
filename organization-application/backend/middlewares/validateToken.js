@@ -4,10 +4,9 @@ const jwt = require("jsonwebtoken");
 const validateToken = expressAsyncHandler(async (req, res, next) => {
   const authCookie = req.cookies["authcookie"];
   if (!authCookie) {
-    res.status(200);
     req.authData = { userId: null, userRole: "unauthorized" };
     next();
-    // return;
+    return;
   }
 
   jwt.verify(authCookie, process.env.ACCESS_TOKEN_SECRET, (err, data) => {

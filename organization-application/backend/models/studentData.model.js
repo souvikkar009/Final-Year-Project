@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const studentData_schema = mongoose.Schema(
   {
-    drive_id: number,
+    drive_id: Number,
     student: {
       type: mongoose.Schema.Types.Mixed,
       default: null,

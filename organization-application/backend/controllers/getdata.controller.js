@@ -3,6 +3,18 @@ const StudentData = require("../models/studentData.model");
 
 const drive_id = 1001;
 
+
+/*
+@desc Get Form Page
+@route POST /api/getformpage
+@access Public
+*/
+
+const getFormPage = asyncHandler(async (req, res) =>{
+  
+})
+
+
 /*
 @desc Get data
 @route POST /api/getdata
@@ -16,7 +28,7 @@ const getStudentData = asyncHandler(async (req, res) => {
 
   const newStudentData = await StudentData.create({
     drive_id,
-    studentData,
+    student: studentData,
   });
 
   if (!newStudentData) {

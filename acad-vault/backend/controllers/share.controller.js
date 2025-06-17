@@ -61,13 +61,22 @@ const shareData = expressAsyncHandler(async (req, res) => {
     } = req.body;
     const student = await Student.findById(avid);
 
+    if(!student){
+        res.render("failure", {
+            frontendRedirect: frontend_redirect_uri,
+        });
+        return;
+    }
+
     // check if the password matches
-    const isPasswordMatched = bcrypt.compare(password, student.password);
+    const isPasswordMatched = await bcrypt.compare(password, student.password);
 
     // if the password don't match, throw invalid credential error
     if (!isPasswordMatched) {
-        res.status(401);
-        throw new Error("Invalid Credentials");
+        res.render("failure", {
+            frontendRedirect: frontend_redirect_uri,
+        });
+        return;
     }
 
     const studentData = getAccessingData(student, JSON.parse(accessing_data));

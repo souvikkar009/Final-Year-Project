@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import axios from "axios";
 import { RouterProvider } from "react-router-dom";
 import AppRouter from "./routes/AppRouter";
@@ -7,35 +6,7 @@ import { AuthProvider } from "./routes/AuthContext";
 axios.defaults.baseURL = "http://localhost:3028";
 axios.defaults.withCredentials = true;
 
-const secret_key = "107022c4dbcfd5bb";
-const org_id = "bc82b53a";
-const access_key = "ee84f8bf8038ac78d3e4aa108b796177";
-const redirect_uri = `http://localhost:3028/api/receive-data`;
-const frontend_redirect_uri = `http://localhost:5174/`;
-
 const App = () => {
-  // useEffect(() => {
-  //   const handleMessage = (event) => {
-  //     // if (event.origin !== "your_target_origin") {
-  //     //   // Verify the origin of the message
-  //     //   return;
-  //     // }
-
-  //     const encodedStudentData = event.data.studentData;
-
-  //     const decodedStudentData = encodedStudentData.replace(/&#34;/g, '"');
-  //     const studentData = JSON.parse(decodedStudentData);
-  //     console.log(studentData);
-
-  //     // Handle the message data here
-  //   };
-
-  //   window.addEventListener("message", handleMessage);
-
-  //   return () => {
-  //     window.removeEventListener("message", handleMessage);
-  //   };
-  // }, []);
   return (
     <AuthProvider>
       <RouterProvider router={AppRouter} />

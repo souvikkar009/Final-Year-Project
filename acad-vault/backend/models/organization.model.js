@@ -6,7 +6,7 @@ const organization_schema = mongoose.Schema(
         role: { type: String, default: "organization" },
 
         _id: String,
-        orgid: String,
+        org_id: String,
         organization_name: String,
         email: String,
         password: String,

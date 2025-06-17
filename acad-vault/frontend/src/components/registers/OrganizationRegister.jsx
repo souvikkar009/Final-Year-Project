@@ -43,7 +43,7 @@ const OrganizationRegister = () => {
 
     return (
         <div className="flex items-center justify-center relative">
-            <div className="w-full max-w-xl p-8 shadow-lg shadow-slate-400 border border-gray-400 rounded-lg">
+            <div className="w-full mt-12 max-w-xl p-8 shadow-lg shadow-slate-400 border border-gray-400 rounded-lg">
                 <div className="text-2xl font-bold text-center mb-6 text-teal-400">
                     Organization Registration
                 </div>
