@@ -11,7 +11,7 @@ const UploadStudentData = () => {
 
     const [file, setFile] = useState(null);
     const fileInputRef = useRef(null);
-    const [uploadStatus, setUploadStatus] = useState("");
+    // const [uploadStatus, setUploadStatus] = useState("");
 
     const handleFileChange = (e) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -39,7 +39,7 @@ const UploadStudentData = () => {
                     },
                 }
             );
-            setUploadStatus("✅ Upload successful!");
+            // setUploadStatus("✅ Upload successful!");
             console.log(response.data);
             setFile(null);
             if (fileInputRef.current) {
@@ -47,12 +47,15 @@ const UploadStudentData = () => {
             }
         } catch (error) {
             console.error("Upload error:", error);
-            setUploadStatus("❌ Upload failed.");
+            // setUploadStatus("❌ Upload failed.");
         }
     };
 
     return (
         <div className="my-12 w-9/10 mx-auto shadow-lg border border-slate-400 shadow-slate-400 p-8 rounded-lg text-white">
+            {/* Animated background elements
+            <div className="absolute top-20 left-10 w-72 h-72 bg-teal-500/20 rounded-full blur-3xl animate-pulse"></div> */}
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
             <div className="text-teal-400 text-2xl font-semibold text-center">
                 Upload Student Bulk Data
             </div>

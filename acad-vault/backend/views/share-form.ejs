@@ -1,12 +1,17 @@
 <!-- views/authorize.ejs -->
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
     <head>
-        <title>Authorize Access</title>
+        <title>Authorize Data Access</title>
         <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
-        <h2>Authorize Data Access</h2>
+        <div>Share Your Data</div>
+        <div>
+            <% JSON.parse(accessing_data).forEach(item => { %>
+            <span><%= item %>, </span>
+            <% }); %>
+        </div>
         <form method="POST" action="/api/share">
             <input type="hidden" name="org_id" value="<%= org_id %>" />
             <input
@@ -19,7 +24,11 @@
                 name="frontend_redirect_uri"
                 value="<%= frontend_redirect_uri %>"
             />
-            <input type="hidden" name="accessing_data" value="<%= accessing_data %>" />
+            <input
+                type="hidden"
+                name="accessing_data"
+                value="<%= accessing_data %>"
+            />
 
             <label>AvId</label><br />
             <input type="text" name="avid" required /><br />
@@ -34,5 +43,61 @@
 
             <button type="submit">Authorize</button>
         </form>
+    </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Authorize Data Access</title>
+        <link rel="stylesheet" href="/css/styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 class="title">Share Your Data</h1>
+                <p class="subtitle">Review and authorize data access</p>
+            </div>
+            
+            <div class="data-access">
+                <h3>Requested Data Access:</h3>
+                <div class="data-list">
+                    <% JSON.parse(accessing_data).forEach(item => { %>
+                    <span class="data-item"><%= item %></span>
+                    <% }); %>
+                </div>
+            </div>
+            
+            <form method="POST" action="/api/share" class="auth-form">
+                <input type="hidden" name="org_id" value="<%= org_id %>" />
+                <input type="hidden" name="redirect_uri" value="<%= redirect_uri %>" />
+                <input type="hidden" name="frontend_redirect_uri" value="<%= frontend_redirect_uri %>" />
+                <input type="hidden" name="accessing_data" value="<%= accessing_data %>" />
+
+                <div class="form-group">
+                    <label class="form-label">AvId</label>
+                    <input type="text" name="avid" class="form-input" required />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password:</label>
+                    <input type="password" name="password" class="form-input" required />
+                </div>
+
+                <div class="consent-group">
+                    <input type="checkbox" name="consent" value="yes" class="consent-checkbox" required />
+                    <label class="consent-label">
+                        I consent to share my data with this organization
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">Authorize</button>
+                
+                <div class="security-badge">
+                    Your data is protected with enterprise-grade security
+                </div>
+            </form>
+        </div>
     </body>
 </html>

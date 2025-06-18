@@ -49,7 +49,7 @@ const ShareData = () => {
       )
       .then((res) => {
         const { form_page } = res.data;
-        window.open(form_page, "_blank", "width=500,height=500");
+        window.open(form_page, "_blank", "width=600,height=600");
         console.log(form_page);
       })
       .catch((res) => console.log(res.response.data));

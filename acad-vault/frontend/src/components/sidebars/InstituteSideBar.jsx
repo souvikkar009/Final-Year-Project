@@ -2,9 +2,11 @@ import { NavLink, useLocation } from "react-router-dom";
 
 const InstituteSideBar = ({ props }) => {
     const pathname = useLocation().pathname;
+    console.log(pathname);
+    
 
     return (
-        <aside className="flex flex-col">
+        <aside className="flex flex-col z-20">
             {pathname !== "/institute" && (
                 <NavLink to={"/institute"}>
                     <div className="sidebar-item">Institute Page</div>
