@@ -80,29 +80,12 @@ const registerStudentInSecondaryBulk = expressAsyncHandler(async (req, res) => {
         for (const student_data of payload) {
             const { avid, ...secondary_data } = student_data;
 
-            const secondary = {};
+            const secondary = { "secondary.institute_id": institute_id };
             for (let dataPoint in secondary_data) {
                 secondary[studentDateMap[dataPoint]] =
                     secondary_data[dataPoint];
             }
-            // console.log(secondary);
-
-            const student_institute_id_data = await Student.findById(
-                avid
-            ).select("secondary.institute_id -_id");
-
-            if (!student_institute_id_data) {
-                continue;
-            }
-
-            const stundent_institute_id =
-                student_institute_id_data.secondary.institute_id;
-
-            // console.log(stundent_institute_id, institute_id);
-            // console.log(typeof stundent_institute_id, typeof institute_id);
-
-            // no type checking
-            if (stundent_institute_id != institute_id) continue;
+            console.log(secondary);
 
             const student = await Student.findByIdAndUpdate(avid, secondary, {
                 new: true,
@@ -167,6 +150,9 @@ const registerStudentInHigherSecondary = expressAsyncHandler(
             higher_secondary[studentDateMap[dataPoint]] =
                 higher_secondary_data[dataPoint];
         }
+
+        console.log(higher_secondary);
+
         const student = await Student.findByIdAndUpdate(
             avid,
             higher_secondary,
@@ -213,35 +199,41 @@ const registerStudentInHigherSecondaryBulk = expressAsyncHandler(
             for (const student_data of payload) {
                 const { avid, ...higher_secondary_data } = student_data;
 
-                const higher_secondary = {};
+                const higher_secondary = {
+                    "higher_secondary.institute_id": institute_id,
+                };
                 for (let dataPoint in higher_secondary_data) {
                     higher_secondary[studentDateMap[dataPoint]] =
                         higher_secondary_data[dataPoint];
                 }
-                // console.log(higher_secondary);
 
-                const student_institute_id_data = await Student.findById(
-                    avid
-                ).select("higher_secondary.institute_id -_id");
+                // const student_institute_id_data = await Student.findById(
+                //     avid
+                // ).select("higher_secondary.institute_id -_id");
 
-                if (!student_institute_id_data) {
-                    continue;
-                }
+                // if (!student_institute_id_data) {
+                //     continue;
+                // }
 
-                const stundent_institute_id =
-                    student_institute_id_data.higher_secondary.institute_id;
+                // const stundent_institute_id =
+                //     student_institute_id_data.higher_secondary.institute_id;
 
                 // console.log(stundent_institute_id, institute_id);
                 // console.log(typeof stundent_institute_id, typeof institute_id);
 
-                // no type checking
-                if (stundent_institute_id != institute_id) continue;
+                // // no type checking
+                // if (stundent_institute_id != institute_id) continue;
+                console.log(higher_secondary);
+                
 
                 const student = await Student.findByIdAndUpdate(
                     avid,
                     higher_secondary,
                     { new: true }
                 );
+
+                console.log(student);
+                
 
                 if (student) {
                     noOfUpdates++;
@@ -341,18 +333,23 @@ const uploadSecondaryAcademicsData = expressAsyncHandler(async (req, res) => {
                 avid
             ).select("secondary.institute_id -_id");
 
-            const stundent_institute_id =
+            const student_institute_id =
                 student_institute_id_data.secondary.institute_id;
 
             // console.log(stundent_institute_id, institute_id);
-            // console.log(typeof stundent_institute_id, typeof institute_id);
+            // console.log(student_institute_id, institute_id);
 
             // no type checking
-            if (stundent_institute_id != institute_id) continue;
+            if (student_institute_id != institute_id) {
+                console.log("Not matched");
+                continue;
+            }
 
             const student = await Student.findByIdAndUpdate(avid, secondary, {
                 new: true,
             });
+
+            console.log(student);
 
             if (student) {
                 noOfUpdates++;
@@ -365,6 +362,7 @@ const uploadSecondaryAcademicsData = expressAsyncHandler(async (req, res) => {
 
         // Send final response
         res.json({
+            message: noOfUpdates + " student secondary data uploaded",
             requestedUpdates: payloadSize,
             successfulUpdates: noOfUpdates,
         });
@@ -393,6 +391,7 @@ const uploadHigherSecondaryAcademicsData = expressAsyncHandler(
             res.status(401);
             throw new Error("Unauthorized!!!...");
         }
+
         try {
             const fileData = await fs.readFile(filePath, "utf-8");
             const payload = JSON.parse(fileData);
@@ -413,6 +412,8 @@ const uploadHigherSecondaryAcademicsData = expressAsyncHandler(
                 const student_institute_id_data = await Student.findById(
                     avid
                 ).select("higher_secondary.institute_id -_id");
+
+                console.log(student_institute_id_data);
 
                 const stundent_institute_id =
                     student_institute_id_data.higher_secondary.institute_id;
@@ -440,6 +441,8 @@ const uploadHigherSecondaryAcademicsData = expressAsyncHandler(
 
             // Send final response
             res.json({
+                message:
+                    noOfUpdates + " student higher secondary registration done",
                 requestedUpdates: payloadSize,
                 successfulUpdates: noOfUpdates,
             });

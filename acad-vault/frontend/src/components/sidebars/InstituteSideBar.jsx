@@ -1,9 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 
-const InstituteSideBar = ({ props }) => {
+const InstituteSideBar = () => {
     const pathname = useLocation().pathname;
-    console.log(pathname);
-    
 
     return (
         <aside className="flex flex-col z-20">
@@ -12,14 +10,11 @@ const InstituteSideBar = ({ props }) => {
                     <div className="sidebar-item">Institute Page</div>
                 </NavLink>
             )}
-            {props === "higher_studies" &&
-                pathname !== "/institute/register-higher-studies" && (
-                    <NavLink to={"/institute/register-higher-studies"}>
-                        <div className="sidebar-item">
-                            Register In Higher Studies
-                        </div>
-                    </NavLink>
-                )}
+            {pathname !== "/institute/register-student-bulk" && (
+                <NavLink to={"/institute/register-student-bulk"}>
+                    <div className="sidebar-item">Register In Bulk</div>
+                </NavLink>
+            )}
             {pathname !== "/institute/upload-student-data" && (
                 <NavLink to={"/institute/upload-student-data"}>
                     <div className="sidebar-item">Upload Student Data</div>

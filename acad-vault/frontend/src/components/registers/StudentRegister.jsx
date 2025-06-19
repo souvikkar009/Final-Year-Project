@@ -251,7 +251,6 @@ const StudentRegister = () => {
             password: formData.password,
         };
         console.log(registerData);
-        // Mock API call
         await axios
             .post(`/api/auth/student/register`, registerData)
             .then((response) => {
@@ -263,8 +262,6 @@ const StudentRegister = () => {
                 alert(error.response.data.message);
                 setFormData(initialState);
             });
-        alert("Registration successful!");
-        setFormData(initialState);
     };
 
     return (

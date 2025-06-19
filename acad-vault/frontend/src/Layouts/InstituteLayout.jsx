@@ -25,9 +25,7 @@ const InstituteLayout = () => {
             <Header />
             <div className="flex-1 flex overflow-hidden">
                 <div className="w-1/5 shrink-0 border-r border-r-slate-400">
-                    {institute && (
-                        <InstituteSideBar props={institute.institute_level} />
-                    )}
+                    {institute && <InstituteSideBar />}
                 </div>
                 <div className="flex-1 overflow-y-auto">
                     <Outlet context={institute} />

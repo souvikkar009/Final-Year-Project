@@ -157,7 +157,7 @@ const StudentLogin = () => {
                             New to AcadVault?{" "}
                             <span className="font-semibold bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent hover:from-teal-300 hover:to-blue-300 transition-all duration-300 relative group cursor-pointer">
                                 <NavLink to={"/auth/student/register"}>
-                                    Create an account
+                                    Register
                                 </NavLink>
 
                                 <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-teal-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>

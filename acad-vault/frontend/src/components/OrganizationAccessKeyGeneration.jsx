@@ -131,12 +131,7 @@ const OrganizationAccessKeyGeneration = () => {
             alert("Select Data Points");
             return;
         }
-        // console.log(generalInfoDataPointValues);
-        // console.log(generalInfoDataPoints);
-        // console.log(secondaryDataPoints);
-        // console.log(secondaryDataPointValues);
-        // console.log(higherSecondaryDataPoints);
-        // console.log(higherSecondaryDataPointValues);
+
         console.log(allDataPoints);
 
         // setAccessKeyRes("lnjvgu9675fc");
@@ -154,7 +149,7 @@ const OrganizationAccessKeyGeneration = () => {
             });
     };
     return (
-        <div className="flex items-center justify-center mt-12">
+        <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
             <div className="w-3/4 p-8 shadow-lg shadow-slate-400 border border-slate-400 rounded-lg">
                 <div className="text-2xl font-bold text-center text-teal-400 mb-6">
                     Generate Access Key
@@ -336,7 +331,7 @@ const OrganizationAccessKeyGeneration = () => {
                     </button>
                 </form>
             </div>
-            <div
+            {/* <div
                 className={`w-full h-screen fixed left-0 top-0 bg-slate-900 ${
                     accessKeyRes ? "block" : "hidden"
                 }`}
@@ -380,6 +375,148 @@ const OrganizationAccessKeyGeneration = () => {
                                 }, 300);
                             }}
                         />
+                    </div>
+                </div>
+            )} */}
+
+            {/* Backdrop with blur effect */}
+            <div
+                className={`w-full h-screen fixed left-0 top-0 bg-black/50 backdrop-blur-sm transition-all duration-300 ${
+                    accessKeyRes ? "block" : "hidden"
+                }`}
+            ></div>
+
+            {accessKeyRes && (
+                <div className="fixed right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 w-11/12 max-w-md z-10 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-600 shadow-2xl rounded-2xl p-6 animate-in fade-in-0 zoom-in-95 duration-300">
+                    {/* Close button */}
+                    <IoCloseSharp
+                        className="absolute right-4 top-4 text-xl text-slate-400 hover:text-red-500 hover:rotate-90 cursor-pointer transition-all duration-200"
+                        title="Close"
+                        onClick={() => {
+                            window.location.replace("/organization");
+                        }}
+                    />
+
+                    {/* Success icon */}
+                    <div className="flex justify-center mb-4">
+                        <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center">
+                            <svg
+                                className="w-8 h-8 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M5 13l4 4L19 7"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {/* Title */}
+                    <div className="text-center text-2xl font-bold text-white mb-2">
+                        Access Key Generated
+                    </div>
+
+                    {/* Message */}
+                    <div className="text-center text-lg text-teal-400 font-medium mb-6">
+                        {accessKeyRes.message}
+                    </div>
+
+                    {/* Instructions */}
+                    <div className="text-center text-sm text-slate-300 mb-4 font-medium">
+                        Copy your secret access code below
+                    </div>
+
+                    {/* Access key display and copy */}
+                    <div className="relative">
+                        <div className="bg-slate-700/50 border border-slate-600 rounded-xl p-4 mb-4">
+                            <div className="flex items-center justify-between gap-3">
+                                <div className="font-mono text-sm text-slate-200 break-all flex-1 bg-slate-800/50 px-3 py-2 rounded-lg">
+                                    <span
+                                        className={`transition-all duration-200 ${
+                                            copied
+                                                ? "text-emerald-400"
+                                                : "text-slate-200"
+                                        }`}
+                                    >
+                                        {accessKeyRes.access_key}
+                                    </span>
+                                </div>
+
+                                <button
+                                    className={`p-2 rounded-lg transition-all duration-200 ${
+                                        copied
+                                            ? "bg-emerald-600 text-white"
+                                            : "bg-slate-600 text-slate-300 hover:bg-slate-500"
+                                    }`}
+                                    onClick={async () => {
+                                        await window.navigator.clipboard.writeText(
+                                            accessKeyRes.access_key
+                                        );
+                                        setCopied(true);
+                                        setTimeout(() => {
+                                            setCopied(false);
+                                        }, 300);
+                                    }}
+                                >
+                                    {copied ? (
+                                        <svg
+                                            className="w-5 h-5"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M5 13l4 4L19 7"
+                                            />
+                                        </svg>
+                                    ) : (
+                                        <FaRegCopy className="w-5 h-5" />
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Copy feedback */}
+                        <div
+                            className={`text-center text-sm font-medium transition-all duration-200 ${
+                                copied
+                                    ? "text-emerald-400 opacity-100"
+                                    : "text-transparent opacity-0"
+                            }`}
+                        >
+                            ✓ Copied to clipboard!
+                        </div>
+                    </div>
+
+                    {/* Security notice */}
+                    <div className="mt-6 p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg">
+                        <div className="flex items-start gap-2">
+                            <svg
+                                className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                                />
+                            </svg>
+                            <p className="text-xs text-amber-200">
+                                Keep this access key for securely getting
+                                academic data
+                            </p>
+                        </div>
                     </div>
                 </div>
             )}

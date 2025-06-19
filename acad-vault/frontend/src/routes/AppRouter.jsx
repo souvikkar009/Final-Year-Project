@@ -24,6 +24,7 @@ import Institute from "../pages/Institute";
 import Student from "../pages/Student";
 import UploadStudentData from "../components/UploadStudentData";
 import RegisterHigherStudies from "../components/RegisterHigherStudies";
+import RegisterStudentBulk from "../components/RegisterStudentBulk";
 
 const AppRouter = createBrowserRouter([
     // Home Page
@@ -95,9 +96,14 @@ const AppRouter = createBrowserRouter([
                         element: <UploadStudentData />,
                     },
                     {
-                        path: "register-higher-studies",
-                        element: <RegisterHigherStudies />,
+                        path: "register-student-bulk",
+                        element: <RegisterStudentBulk />,
                     },
+
+                    // {
+                    //     path: "register-higher-studies",
+                    //     element: <RegisterHigherStudies />,
+                    // },
                 ],
             },
         ],

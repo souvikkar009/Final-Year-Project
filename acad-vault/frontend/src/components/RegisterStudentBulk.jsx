@@ -6,104 +6,7 @@ import { useOutletContext } from "react-router-dom";
 axios.defaults.baseURL = "http://localhost:3030";
 axios.defaults.withCredentials = true;
 
-/*
-const UploadStudentData = () => {
-    const institute = useOutletContext();
-
-    const [file, setFile] = useState(null);
-    const fileInputRef = useRef(null);
-    // const [uploadStatus, setUploadStatus] = useState("");
-
-    const handleFileChange = (e) => {
-        if (e.target.files && e.target.files.length > 0) {
-            setFile(e.target.files[0]);
-        }
-    };
-
-    const handleBtnClick = () => {
-        fileInputRef.current.click();
-    };
-
-    const handleFileUpload = async () => {
-        if (!file) return alert("No file selected");
-
-        const formData = new FormData();
-        formData.append("file", file);
-
-        try {
-            const response = await axios.post(
-                `/api/institute/${institute.institute_level}/upload-data`,
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            );
-            // setUploadStatus("✅ Upload successful!");
-            console.log(response.data);
-            setFile(null);
-            if (fileInputRef.current) {
-                fileInputRef.current.value = null;
-            }
-        } catch (error) {
-            console.error("Upload error:", error);
-            // setUploadStatus("❌ Upload failed.");
-        }
-    };
-
-    return (
-        <div className="my-12 w-9/10 mx-auto shadow-lg border border-slate-400 shadow-slate-400 p-8 rounded-lg text-white">
-            { Animated background elements
-            <div className="absolute top-20 left-10 w-72 h-72 bg-teal-500/20 rounded-full blur-3xl animate-pulse"></div> }
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-            <div className="text-teal-400 text-2xl font-semibold text-center">
-                Upload Student Bulk Data
-            </div>
-            <div className="mt-12 flex items-center justify-center">
-                <button className="my-file-upload" onClick={handleBtnClick}>
-                    {file ? "Choose Other" : "Choose File"}
-                </button>
-                <input
-                    id="file-uploader"
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={handleFileChange}
-                />
-            </div>
-            {file && (
-                <div className="flex gap-2 items-center mt-4">
-                    <span className="font-semibold text-xl">
-                        Selected File:
-                    </span>
-                    <span className="italic font-light">{file.name}</span>
-                    <span
-                        onClick={() => {
-                            setFile(null);
-                            if (fileInputRef.current) {
-                                fileInputRef.current.value = null;
-                            }
-                        }}
-                    >
-                        <IoCloseSharp className="text-xl text-red-500 cursor-pointer" />
-                    </span>
-                </div>
-            )}
-            <div className="flex items-center justify-center mt-8">
-                <button
-                    onClick={handleFileUpload}
-                    className="bg-gradient-to-br from-blue-700 via-purple-900 to-blue-700 font-semibold text-xl bg-teal-600 rounded-xl px-16 py-2 cursor-pointer hover:bg-teal-700"
-                >
-                    Upload Data
-                </button>
-            </div>
-        </div>
-    );
-};
-
-*/
-
-const UploadStudentData = () => {
+const RegisterStudentBulk = () => {
     const institute = useOutletContext();
 
     const [file, setFile] = useState(null);
@@ -149,7 +52,7 @@ const UploadStudentData = () => {
 
         try {
             const response = await axios.post(
-                `/api/institute/${institute.institute_level}/upload-data`,
+                `/api/institute/${institute.institute_level}/register-bulk`,
                 formData,
                 {
                     headers: {
@@ -194,10 +97,10 @@ const UploadStudentData = () => {
                 {/* Header */}
                 <div className="text-center mb-8">
                     <h2 className="text-3xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent mb-2">
-                        Upload Student Data
+                        Register Student In Bulk
                     </h2>
                     <p className="text-slate-400 text-sm">
-                        Upload your student data file in CSV or Excel format
+                        Upload your student data file in JSON format
                     </p>
                 </div>
 
@@ -395,4 +298,4 @@ const UploadStudentData = () => {
     );
 };
 
-export default UploadStudentData;
+export default RegisterStudentBulk;

@@ -146,7 +146,7 @@ const AcademicInstituteLogin = () => {
                         {/* Submit Button */}
                         <button
                             onClick={handleSubmit}
-                            className="w-full relative overflow-hidden bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-500 hover:to-blue-500 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                            className="w-full cursor-pointer relative overflow-hidden bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-500 hover:to-blue-500 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                         >
                             <span className="relative z-10">Sign In</span>
                             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700"></div>
